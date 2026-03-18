@@ -3,7 +3,7 @@ const express = require('express'); // 2) Require express
 const { MongoClient } = require('mongodb'); // 3) Require mongodb
 
 
-const uri = process.env.MONGO_URI; // 4) Load environment variables from the .env file
+const uri = process.env.MONGO_URI; // 4) Load/read environment variables from the .env file
 const app = express(); // 5) Create an Express app instance
 const port = 3001; // 6) Define a port (e.g., 3001)
 
@@ -14,10 +14,10 @@ app.get('/', async (req, res) => { // 8) Create a single GET route at '/'
          res.status(200).json({ message: "Successfully connected to the database!" }); // 9) that, upon a successful database connection, sends back a JSON response: { message: "Successfully connected to the database!" }
 
     } catch (err) { //if something goes wrong, handle the error!
-         console.error(err); // grabs the 500 code
+         console.error(err); //  logs the error to the terminal for debugging
          res.status(500).json({ message: "Failed to connect to the database." }); // 10) If the connection fails, it should send a 500 status code with a message: { message: "Failed to connect to the database." }.
 
-    } finally {  // regradless of what happens above..
+    } finally {  // regardless of what happens above..
         await client.close(); //  always close the connection when done!
     }
 })
@@ -32,4 +32,9 @@ app.listen(port, () => {  //starts the server on port 3001
 /*
 Note:
 - teh 'finally' block is quite important because leaving database connections open that ar enot needed leads to wasted resources and can cause performance issues over time.
+*/
+
+
+/*
+
 */
