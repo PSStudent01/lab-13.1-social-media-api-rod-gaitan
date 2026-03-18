@@ -31,10 +31,20 @@ app.listen(port, () => {  //starts the server on port 3001
 
 /*
 Note:
-- teh 'finally' block is quite important because leaving database connections open that ar enot needed leads to wasted resources and can cause performance issues over time.
+- teh 'finally' block is quite important because leaving database connections open that are not needed leads to wasted resources and can cause performance issues over time.
 */
 
 
 /*
-
+{IOWs, you're only concerned with establishing a session betwen your app and the DB }
+- Your server.js connects to the database - like initiating a session
+- Then it immediately closes the connection with client.close() - like closing the session 
+- It never actually reads or writes any data to the database
 */
+
+
+
+
+
+
+
